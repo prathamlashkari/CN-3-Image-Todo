@@ -56,4 +56,41 @@ document.addEventListener("DOMContentLoaded", function() {
         saveToLocalStorage();
     }
 
+    function displayFile(file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            const div = document.createElement('div');
+            div.className = 'file-name';
+        
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.alt = file.name;
+            img.className = 'thumbnail';
+            div.appendChild(img);
+    
+            // Add a textarea for image description
+            const textarea = document.createElement('textarea');
+            textarea.placeholder = "Add a description...";
+    
+            // Save to localStorage once the description is added/changed and textarea loses focus
+            textarea.addEventListener('blur', saveToLocalStorage);
+    
+            div.appendChild(textarea);
+        
+            const deleteIcon = document.createElement('span');
+            deleteIcon.textContent = '❌';
+            deleteIcon.className = 'delete-icon';
+            deleteIcon.addEventListener('click', function() {
+                fileList.removeChild(div);
+                saveToLocalStorage();
+            });
+            div.appendChild(deleteIcon);
+        
+            fileList.appendChild(div);
+        }
+        
+        reader.readAsDataURL(file);
+    }
+
 });
