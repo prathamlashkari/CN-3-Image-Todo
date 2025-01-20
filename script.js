@@ -30,4 +30,30 @@ document.addEventListener("DOMContentLoaded", function() {
         fileInput.click();
     });
 
+    function manageFiles(files) {
+        let totalFiles = fileList.children.length;
+    
+        Array.from(files).forEach(file => {
+            if (!file.type.startsWith('image/')) {
+                alert("File " + file.name + " is not an image and won't be added.");
+            }
+            else if (file.size > 1024 * 1024) {
+                alert("File " + file.name + " is larger than 1MB and won't be added.");
+            } else {
+                totalFiles++;
+                if (totalFiles <= MAX_IMAGES) {
+                    displayFile(file);
+                } else {
+                    alert("Maximum images allowed is " + MAX_IMAGES + ". " + file.name + " won't be added.");
+                }
+            }
+        });
+    
+        while (fileList.children.length > MAX_IMAGES) {
+            fileList.removeChild(fileList.firstChild);
+        }
+    
+        saveToLocalStorage();
+    }
+
 });
