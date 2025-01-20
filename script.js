@@ -69,11 +69,10 @@ document.addEventListener("DOMContentLoaded", function() {
             img.className = 'thumbnail';
             div.appendChild(img);
     
-            // Add a textarea for image description
             const textarea = document.createElement('textarea');
             textarea.placeholder = "Add a description...";
     
-            // Save to localStorage once the description is added/changed and textarea loses focus
+     
             textarea.addEventListener('blur', saveToLocalStorage);
     
             div.appendChild(textarea);
@@ -92,5 +91,46 @@ document.addEventListener("DOMContentLoaded", function() {
         
         reader.readAsDataURL(file);
     }
+
+    function saveToLocalStorage() {
+        const imagesData = Array.from(fileList.children).map(child => {
+            return {
+                src: child.querySelector('.thumbnail').src,
+                description: child.querySelector('textarea').value
+            };
+        });
+        console.log("Saving to localStorage:", imagesData);
+        localStorage.setItem('storedImagesData', JSON.stringify(imagesData));
+    }
+    
+    function loadFromLocalStorage() {
+        const storedImagesData = JSON.parse(localStorage.getItem('storedImagesData') || '[]');
+        console.log("Loaded from localStorage:", storedImagesData);
+        storedImagesData.forEach(data => {
+            const div = document.createElement('div');
+            div.className = 'file-name';
+    
+            const img = document.createElement('img');
+            img.src = data.src;
+            img.className = 'thumbnail';
+            div.appendChild(img);
+    
+            const textarea = document.createElement('textarea');
+            textarea.value = data.description;
+            textarea.placeholder = "Add a description...";
+            div.appendChild(textarea);
+    
+            const deleteIcon = document.createElement('span');
+            deleteIcon.textContent = '❌';
+            deleteIcon.className = 'delete-icon';
+            deleteIcon.addEventListener('click', function() {
+                fileList.removeChild(div);
+                saveToLocalStorage();
+            });
+            div.appendChild(deleteIcon);
+    
+            fileList.appendChild(div);
+        });
+    }    loadFromLocalStorage();
 
 });
