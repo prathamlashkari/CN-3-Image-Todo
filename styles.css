@@ -1,4 +1,3 @@
-/* Carousel Styles */
 .carousel {
   position: fixed;
   top: 0;
@@ -11,7 +10,7 @@
 
 .carousel-items {
   display: flex;
-  width: 200%; /* Assuming 2 images, increase as per number of images */
+  width: 200%;
   animation: slide 10s infinite;
 }
 
@@ -23,7 +22,6 @@
   background-position: center;
 }
 
-/* Carousel Animation */
 @keyframes slide {
   0%,
   50% {
@@ -35,10 +33,9 @@
   }
 }
 
-/* UI Brighter Styles */
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #ffd700; /* Bright Yellow */
+  background-color: #ffd700;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +43,7 @@ body {
 }
 
 .app-container {
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent White */
+  background: rgba(255, 255, 255, 0.8);
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -56,15 +53,15 @@ body {
 
 h1 {
   text-align: center;
-  color: #ff4500; /* Bright Orange */
+  color: #ff4500;
   margin-bottom: 20px;
 }
 
 .dropzone {
   cursor: pointer;
   padding: 60px 40px;
-  background: #fffaf0; /* Creamy */
-  border: 2px dashed #ff6347; /* Tomato Red */
+  background: #fffaf0;
+  border: 2px dashed #ff6347;
   border-radius: 10px;
   text-align: center;
   transition: background 0.3s ease-in-out;
@@ -82,14 +79,14 @@ h1 {
 }
 
 .dropzone p span {
-  color: #ff6347; /* Tomato Red */
+  color: #ff6347;
   text-decoration: underline;
   cursor: pointer;
 }
 
 .dropzone i {
   font-size: 40px;
-  color: #ff6347; /* Tomato Red */
+  color: #ff6347;
   margin-bottom: 15px;
 }
 
@@ -98,7 +95,7 @@ h1 {
 }
 
 .file-name {
-  background: #fffacd; /* LemonChiffon */
+  background: #fffacd;
   padding: 15px;
   border-radius: 10px;
   margin-top: 10px;
@@ -118,7 +115,6 @@ img.thumbnail {
   border-radius: 50%;
 }
 
-/* Animation */
 @keyframes fadeInUp {
   from {
     opacity: 0;
